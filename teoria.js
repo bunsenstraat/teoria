@@ -4,6 +4,9 @@ var Interval = require('./lib/interval');
 var Chord = require('./lib/chord');
 var Scale = require('./lib/scale');
 
+
+//alert(Interval);
+
 // never thought I would write this, but: Legacy support
 function intervalConstructor(from, to) {
   // Construct a Interval object from string representation
@@ -723,6 +726,7 @@ Note.prototype = {
   },
 
   transpose: function(interval) {
+	if (typeof interval === 'string') interval = Interval.toCoord(interval);  
     this.coord = vector.add(this.coord, interval.coord);
     return this;
   },
@@ -878,7 +882,9 @@ var scales = {
   minorpentatonic: ['P1', 'm3', 'P4', 'P5', 'm7'],
   mixolydian: ['P1', 'M2', 'M3', 'P4', 'P5', 'M6', 'm7'],
   phrygian: ['P1', 'm2', 'm3', 'P4', 'P5', 'm6', 'm7'],
-  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6']
+  wholetone: ['P1', 'M2', 'M3', 'A4', 'A5', 'A6'],
+  diminishedwholehalf: ['P1','M2','m3','P4','d5','A5','M6','M7'],
+  diminishedhalfwhole: ['P1','m2','m3','M3','A4','P5','M6','m7'],
 };
 
 // synonyms
